@@ -9,9 +9,8 @@ if &term == "xterm"
     set t_Co=256
 	set t_Sf=[3%p1%dm
 	set t_Sb=[4%p1%dm
-
-	color desert256grey
 endif
+colorscheme desert256grey
 
 " Set terminal font encoding
 set encoding=utf-8
@@ -68,30 +67,7 @@ set showcmd
 set ruler
 
 " Display nonprintable characters
-set list
-
-" ToggleList function {{{
-let g:toggle_list = 1
-function! ToggleList()
-	if exists("g:toggle_list")
-		if !exists("b:toggle_list_state")
-			let b:toggle_list_state = &list ? 1 : 0
-		endif
-		let b:toggle_list_state = (b:toggle_list_state + 1) % 3
-		if b:toggle_list_state == 0
-			set nolist
-		elseif b:toggle_list_state == 1
-			set listchars=tab:»\ ,trail:·,nbsp:·
-			set list
-		elseif b:toggle_list_state == 2
-			set listchars=tab:»\ ,trail:·,eol:¶,nbsp:·
-			set list
-		endif
-	else
-		set list!
-	endif
-endfunction
-" }}}
+"set list
 
 " Display tabs as dot-space instead of ^I
 "set listchars=tab:»\ ,trail:·,nbsp:·
@@ -179,13 +155,6 @@ hi StatusLineNC term=none cterm=NONE ctermfg=darkgray ctermbg=black
        \         exe "normal g'\"" |
        \     endif |
        \ endif
-
-" {{{ Templates
-autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
-autocmd BufNewFile *.ksh 0r ~/.vim/templates/template.ksh
-autocmd BufNewFile *.java 0r ~/.vim/templates/template.java
-autocmd BufNewFile *.py 0r ~/.vim/templates/template.py
-" }}}
 
 " {{{ Git settings
 " Go to the top of git commit files, do not remember where we left off
@@ -344,55 +313,28 @@ nnoremap <Leader>gl :Glog<Enter>
 nnoremap <Leader>gs :Gstatus<Enter>
 " }}}
 
-" {{{ YankRing
-" Open up our yank rink upon request
-let g:yankring_history_file = '.vim/yankring_history'
-nnoremap <Leader>pp :YRShow<Enter>
-inoremap <Leader>pp <ESC>:YRShow<Enter>
-"  }}}
-
-" {{{ FuzzyFinder
-map \ff :FufFile<CR>
-map \fm :FufMruFile<CR>
-map \fb :FufBuffer<CR>
-" Set the fuzzy finder temporary directory
-let g:fuf_dataDir="~/.vim/tmp/fuzzy-finder/"
-" }}}
-
-" {{{ Taglist
-" Tell the taglist plugin that the window size cannot be changed
-let Tlist_Inc_Winwidth=0
-
-" Taglist commands
-map <leader>tl :TlistToggle<cr>
-" }}}
-
-" {{{ Closetag
-" Source our closetag function with the right document types
-au FileType html,xml,xsl,xslt source ~/.vim/bundle/closetag/closetag.vim
-" }}}
-
-" CtrlP {{{
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtBS()': ['<c-h>'],
-    \ 'PrtCurLeft()': ['<left>'],
-    \ }
-
-nmap <leader>cpp :CtrlP<CR>
-nmap <leader>cpb :CtrlPBuffer<CR>
-nmap <leader>cpm :CtrlPMRU<CR>
-let g:ctrlp_match_window_reversed = 0 " Put search results at the top instead of the bottom
-let g:ctrlp_regexp = 1 " Search as regex by default
-let g:ctrlp_max_files = 10000
-let g:ctrlp_max_depth = 40
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_cache_dir = $HOME.'/vim/cache/ctrlp'
-let g:ctrlp_open_multiple_files = '2vr'
-let g:ctrlp_extensions = ['tag', 'undo', 'mixed']
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|build$\'
-\}
-" }}}
-" }}}
 
 set nocompatible
+
+" ToggleList function {{{
+let g:toggle_list = 1
+function! ToggleList()
+	if exists("g:toggle_list")
+		if !exists("b:toggle_list_state")
+			let b:toggle_list_state = &list ? 1 : 0
+		endif
+		let b:toggle_list_state = (b:toggle_list_state + 1) % 3
+		if b:toggle_list_state == 0
+			set nolist
+		elseif b:toggle_list_state == 1
+			set listchars=tab:»\ ,trail:·,nbsp:·
+			set list
+		elseif b:toggle_list_state == 2
+			set listchars=tab:»\ ,trail:·,eol:¶,nbsp:·
+			set list
+		endif
+	else
+		set list!
+	endif
+endfunction
+" }}}
