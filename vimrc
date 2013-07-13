@@ -264,21 +264,6 @@ set diffopt+=iwhite
 " Test out omnicompletion
 set ofu=syntaxcomplete#Complete
 
-" Python configuration
-autocmd BufRead,BufNewFile *.py syntax on
-autocmd BufRead,BufNewFile *.py set ai
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,with,try,except,finally,def,class
-au FileType python setl autoindent tabstop=2 expandtab shiftwidth=2 softtabstop=2
-au FileType python filetype plugin indent on
-au FileType python set foldmethod=indent foldlevel=99
-let g:pydiction_location = '$HOME/.vim/after/ftplugin/pydiction/complete-dict'
-au FileType python,man map <buffer> <leader>pw :call ShowPyDoc('<C-R><C-W>', 1)<CR>
-au FileType python,man map <buffer> <leader>pW :call ShowPyDoc('<C-R><C-A>', 1)<CR>
-au FileType python,man map <buffer> <leader>pk :call ShowPyDoc('<C-R><C-W>', 0)<CR>
-au FileType python,man map <buffer> <leader>pK :call ShowPyDoc('<C-R><C-A>', 0)<CR>
-" Execute file being edited with <Shift> + e:
-au FileType python map <buffer> <S-e> :w<CR>:!/opt/freeware/bin/python % <CR>
-
 " Search the current file for what's currently in the search register and display matches
 nmap <silent> ,gs :vimgrep /<C-r>// %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 
