@@ -10,7 +10,6 @@ if &term == "xterm"
 	set t_Sf=[3%p1%dm
 	set t_Sb=[4%p1%dm
 endif
-colorscheme desert256grey
 
 " Set terminal font encoding
 set encoding=utf-8
@@ -20,6 +19,9 @@ set termencoding=utf-8
 
 " Turn on syntax highlighting
 syntax on
+
+" Set colorscheme to our custom color
+colorscheme desert256m
 
 " Save up to 100 commands executed
 set history=200
@@ -80,6 +82,9 @@ set nowrap
 
 " Turn on line numbers
 "set nu
+
+" Display a line at column 81 to let us know not to enter or cross it.
+set colorcolumn=81
 
 " Change the background color the hightlight menu from ugly pink to nice blue
 :highlight Pmenu ctermbg=DarkBlue ctermfg=white gui=bold
