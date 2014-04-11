@@ -6,9 +6,7 @@ execute pathogen#infect()
 
 " Set term settings to xterm-256
 if &term == "xterm"
-    set t_Co=256
-	set t_Sf=[3%p1%dm
-	set t_Sb=[4%p1%dm
+    set term=xterm-256color
 endif
 
 " Set terminal font encoding
