@@ -27,3 +27,6 @@ if [ $TERM = "xterm" ] ; then
 fi
 
 set -o vi
+
+# SET CLI colors since OSX is lame and is just one color
+export CLICOLOR=1
