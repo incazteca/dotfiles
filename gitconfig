@@ -1,0 +1,7 @@
+[user]
+	name  = Franco Reyes
+	email = freyes@enova.com
+[alias]
+    staged = diff --cached
+[core]
+	editor = /usr/bin/vim
