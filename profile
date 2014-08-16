@@ -21,6 +21,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# if exists /usr/local/bin/
+if [ -d "/usr/local/bin" ]; then
+    PATH="/usr/local/bin:$PATH"
+fi
+
 # set XTERM to xterm-256
 if [ $TERM = "xterm" ] ; then
     TERM="xterm-256color"
@@ -30,3 +35,7 @@ set -o vi
 
 # SET CLI colors since OSX is lame and is just one color
 export CLICOLOR=1
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi

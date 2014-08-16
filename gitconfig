@@ -1,7 +1,13 @@
 [user]
 	name  = Franco Reyes
-	email = freyes@enova.com
+    email = freyes@enova.com
+[color]
+    branch  = auto
+    diff    = auto
+    status  = auto
+    show    = auto
 [alias]
     staged = diff --cached
+    graph  = log --graph --decorate --all
 [core]
 	editor = /usr/bin/vim

@@ -82,7 +82,7 @@ set nowrap
 "set nu
 
 " Display a line at column 81 to let us know not to enter or cross it.
-set colorcolumn=81
+set colorcolumn=80
 
 " Change the background color the hightlight menu from ugly pink to nice blue
 :highlight Pmenu ctermbg=DarkBlue ctermfg=white gui=bold
@@ -162,7 +162,7 @@ hi StatusLineNC term=none cterm=NONE ctermfg=darkgray ctermbg=black
 " {{{ Git settings
 " Go to the top of git commit files, do not remember where we left off
 autocmd BufReadPost COMMIT_EDITMSG exe "normal gg"
-autocmd BufReadPost COMMIT_EDITMSG exe "normal $a  "
+autocmd BufReadPost COMMIT_EDITMSG exe "normal $a "
 
 " Enable spell-checking for commit messages
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
