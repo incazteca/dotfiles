@@ -39,3 +39,7 @@ export CLICOLOR=1
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
