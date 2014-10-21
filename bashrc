@@ -111,3 +111,6 @@ stty ixoff -ixon
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 [ -d "/Users/freyes/development_zone/8b/bin" ] && export PATH="/Users/freyes/development_zone/8b/bin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
