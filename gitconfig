@@ -9,5 +9,6 @@
 [alias]
     staged = diff --cached
     graph  = log --graph --decorate --all
+    pr     = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
 [core]
 	editor = /usr/bin/vim
