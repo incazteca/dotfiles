@@ -162,7 +162,7 @@ hi StatusLineNC term=none cterm=NONE ctermfg=darkgray ctermbg=black
 " {{{ Git settings
 " Go to the top of git commit files, do not remember where we left off
 autocmd BufReadPost COMMIT_EDITMSG exe "normal gg"
-autocmd BufReadPost COMMIT_EDITMSG exe "normal $a "
+autocmd BufReadPost COMMIT_EDITMSG exe "normal $a"
 
 " Enable spell-checking for commit messages
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
