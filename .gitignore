@@ -1,2 +1,5 @@
 *.swp
 *.swo
+
+vim/autoload
+vim/bundle
