@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 function install_pathogen {
-    curl -LSso ~/dotfiles/vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    echo "Installing Pathogen"
+
+    current_path=$(pwd)
+    curl -LSso $current_path/vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 }
 
 function setup_vim_plugins {
+    echo "Installing Vim Plugins"
+
+    current_path=$(pwd)
     vim_plugins=(
         'scrooloose/syntastic'
         'scrooloose/nerdtree'
@@ -13,15 +19,17 @@ function setup_vim_plugins {
         'tpope/vim-haml'
     )
 
-    echo $vim_plugins
-    for plugin in $vim_plugins; do
-        echo $plugin
+    for plugin in ${vim_plugins[@]}; do
+        echo "Installing $plugin"
+        IFS=-/ read -r author plugin_name <<<"$plugin"
+
+        git clone git@github.com:$plugin $current_path/vim/bundle/$plugin_name
     done
 }
 
 # Begin Main
 
-#install_pathogen
+install_pathogen
 setup_vim_plugins
 
 # Retrieve list of dotfiles
