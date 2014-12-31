@@ -1,12 +1,9 @@
 dotfiles
 ========
 
-This is a repository of my dotfiles. These dotfiles can be used by setting up a softlink to them.
-
-Example in your home directory:
-
-ln -s $LOC_TO_REPO/vimrc .vimrc
-
-would create a .vimrc softlink to the vimrc file in your dotfile repo.
+This is a repository of my dotfiles. These dotfiles can be used by running
+the setup.sh script. The script will proceed to backup existing dotfiles that
+will be replaced if they exist and then setup a softlink to the files in the
+repo.
 
 These are my files and you're welcome to use them.
