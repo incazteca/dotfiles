@@ -20,10 +20,14 @@ function setup_vim_plugins {
     )
 
     for plugin in ${vim_plugins[@]}; do
-        echo "Installing $plugin"
         IFS=-/ read -r author plugin_name <<<"$plugin"
 
-        git clone git@github.com:$plugin $current_path/vim/bundle/$plugin_name
+        install_path=$current_path/vim/bundle/$plugin_name
+
+        if [ ! -e $install_path ]; then
+            echo "Installing $plugin"
+            git clone git@github.com:$plugin $install_path
+        fi
     done
 }
 
