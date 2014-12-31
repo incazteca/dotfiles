@@ -31,24 +31,44 @@ function setup_vim_plugins {
     done
 }
 
+function setup_dotfiles {
+    echo "Backing up existing dotfiles"
+
+    timestamp=`date +%Y%m%d%H%M%S`
+    dotfiles=($(find . -maxdepth 1 -type f ! -name '*.sh' -a ! -name '*.md' -a ! -name '.*' -printf '%f\n'))
+    current_path=$(pwd)
+
+    for dotfile in ${dotfiles[@]}; do
+        if [ -e $HOME/"."$dotfile ]; then
+            mv $HOME/"."$dotfile $current_path"/backups/"$timestamp$dotfile
+        fi
+
+        echo "Setting up "$dotfile
+        ln -s $current_path/$dotfile $HOME/"."$dotfile
+    done
+}
+
+function setup_dot_directories {
+    echo "Backing up existing dot directories"
+
+    timestamp=`date +%Y%m%d%H%M%S`
+    dot_directories=($(find . -maxdepth 1 -type d ! -name 'backups' -a ! -name '.git' -a ! -name '.' -printf '%f\n'))
+    current_path=$(pwd)
+
+    for dot_directory in ${dot_directories[@]}; do
+        if [ -d $HOME/"."$dot_directory ]; then
+            mv $HOME/"."$dot_directory $current_path"/backups/"$timestamp$dot_directory
+        fi
+
+        echo "Setting up "$dot_directory
+        ln -s $current_path/$dot_directory $HOME/"."$dot_directory
+    done
+}
+
 # Begin Main
 
 install_pathogen
 setup_vim_plugins
 
-# Retrieve list of dotfiles
-
-current_date=`date +%Y%m%d`
-
-dotfiles=($(find . -maxdepth 1 -type f ! -name '*.sh' -a ! -name '*.md' -a ! -name '*.swp' -printf '%f\n'))
-
-# TODO: Pop out first entry in dot directories since it is the current directory
-dot_directories=($(find . -maxdepth 1 -type d ! -name 'backups' -a ! -name '.git' -a ! -name '.' -printf '%f\n'))
-
-#echo ${dotfiles[@]}
-#echo ${dot_directories[@]}
-
-
-# Backup dotfiles in backup directory
-
-
+setup_dotfiles
+setup_dot_directories
