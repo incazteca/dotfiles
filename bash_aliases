@@ -4,7 +4,7 @@ tmux_switcher() {
     if [$session_name == '']; then
         session_name='QA'
     fi
-    tmux new-session -c ~/development_zone/8b/apps -s $session_name
+    tmux new-session -c ~/development_zone -s $session_name
 }
 
 alias be='bundle exec'
