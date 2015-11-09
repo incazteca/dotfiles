@@ -12,7 +12,18 @@ db_disconnect() {
     psql postgres -c "select pg_terminate_backend(pid) from pg_stat_activity where datname='$1'"
 }
 
+vim_modified() {
+    platform=`uname`
+
+    if [[ "$platform" == 'Darwin' ]]; then
+        git status --short | awk '{print $2}' | xargs -o vim
+    else
+        git status --short | awk '{print $2}' | xargs bash -c '</dev/tty vim "$@"' i
+    fi
+}
+
 alias be='bundle exec'
 alias tmux-session=tmux_switcher
 alias besty='bundle exec spring'
 alias db-disconnect=db_disconnect
+alias vim-modified=vim_modified
