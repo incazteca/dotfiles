@@ -26,7 +26,7 @@ function setup_vim_plugins {
 
         if [ ! -e $install_path ]; then
             echo "Installing $plugin"
-            git clone git@github.com:$plugin $install_path
+            git clone https://github.com/$plugin $install_path
         fi
     done
 }
