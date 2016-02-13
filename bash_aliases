@@ -7,6 +7,21 @@ tmux_switcher() {
     tmux new-session -c ~/development_zone -s $session_name
 }
 
+db_disconnect() {
+    db_name=$1
+    psql postgres -c "select pg_terminate_backend(pid) from pg_stat_activity where datname='$1'"
+}
+
+vim_modified() {
+    platform=`uname`
+
+    if [[ "$platform" == 'Darwin' ]]; then
+        git status --short | awk '{print $2}' | xargs -o vim
+    else
+        git status --short | awk '{print $2}' | xargs bash -c '</dev/tty vim "$@"' i
+    fi
+}
+
 alias be='bundle exec'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmux-session=tmux_switcher
