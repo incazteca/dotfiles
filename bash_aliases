@@ -13,9 +13,7 @@ db_disconnect() {
 }
 
 vim_modified() {
-    platform=`uname`
-
-    if [[ "$platform" == 'Darwin' ]]; then
+    if [[ $(uname) == 'Darwin' ]]; then
         git status --short | awk '{print $2}' | xargs -o vim
     else
         git status --short | awk '{print $2}' | xargs bash -c '</dev/tty vim "$@"' i
@@ -26,3 +24,5 @@ alias be='bundle exec'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmux-session=tmux_switcher
 alias besty='bundle exec spring'
+alias db-disconnect=db_disconnect
+alias vim-modified=vim_modified

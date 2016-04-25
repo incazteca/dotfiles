@@ -6,4 +6,6 @@ the setup.sh script. The script will proceed to backup existing dotfiles that
 will be replaced if they exist and then setup a softlink to the files in the
 repo.
 
-These are my files and you're welcome to use them.
+These are my files and you're welcome to use them. To start clone the repo and
+run the setup script
+

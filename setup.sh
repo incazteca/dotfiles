@@ -35,7 +35,15 @@ function setup_dotfiles {
     echo "Backing up existing dotfiles"
 
     timestamp=`date +%Y%m%d%H%M%S`
-    dotfiles=($(find . -maxdepth 1 -type f ! -name '*.sh' -a ! -name '*.md' -a ! -name '.*' -printf '%f\n'))
+
+    declare -a dotfiles
+
+    if [[ $(uname) == 'Darwin' ]]; then
+        dotfiles=($(gfind . -maxdepth 1 -type f ! -name '*.sh' -a ! -name '*.md' -a ! -name '.*' -printf '%f\n'))
+    else
+        dotfiles=($(find . -maxdepth 1 -type f ! -name '*.sh' -a ! -name '*.md' -a ! -name '.*' -printf '%f\n'))
+    fi
+
     current_path=$(pwd)
 
     for dotfile in ${dotfiles[@]}; do
@@ -52,7 +60,15 @@ function setup_dot_directories {
     echo "Backing up existing dot directories"
 
     timestamp=`date +%Y%m%d%H%M%S`
-    dot_directories=($(find . -maxdepth 1 -type d ! -name 'backups' -a ! -name '.git' -a ! -name '.' -printf '%f\n'))
+
+    declare -a dot_directories
+
+    if [[ $(uname) == 'Darwin' ]]; then
+        dot_directories=($(gfind . -maxdepth 1 -type d ! -name 'backups' -a ! -name '.git' -a ! -name '.' -printf '%f\n'))
+    else
+        dot_directories=($(find . -maxdepth 1 -type d ! -name 'backups' -a ! -name '.git' -a ! -name '.' -printf '%f\n'))
+    fi
+
     current_path=$(pwd)
 
     for dot_directory in ${dot_directories[@]}; do
