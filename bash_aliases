@@ -26,3 +26,5 @@ alias be='bundle exec'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmux-session=tmux_switcher
 alias besty='bundle exec spring'
+alias db-disconnect=db_disconnect
+alias vim-modified=vim_modified
