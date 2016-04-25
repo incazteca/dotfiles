@@ -115,5 +115,3 @@ fi
 
 stty ixany
 stty ixoff -ixon
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
