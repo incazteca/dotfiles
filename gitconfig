@@ -1,15 +1,19 @@
 [user]
-	name  = Franco Reyes
-    email = freyes1988@gmail.com
+  name  = Franco Reyes
+  email = freyes@strikesocial.com
 [color]
-    branch  = auto
-    diff    = auto
-    status  = auto
-    show    = auto
+  branch  = auto
+  diff    = auto
+  status  = auto
+  show    = auto
 [alias]
-    staged = diff --cached
-    graph  = log --graph --decorate --all
-    short-graph = log --graph --decorate -all --oneline
-    pr     = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+  staged = diff --cached
+  graph  = log --graph --decorate --all
+  short-graph = log --graph --decorate -all --oneline
+  pr     = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
 [core]
-	editor = /usr/bin/vim
+  editor = /usr/bin/vim
+[rerere]
+  enabled = true
+[merge]
+  conflictstyle = diff3
