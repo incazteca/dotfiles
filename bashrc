@@ -115,3 +115,6 @@ fi
 
 stty ixany
 stty ixoff -ixon
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
