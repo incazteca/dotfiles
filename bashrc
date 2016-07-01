@@ -121,4 +121,3 @@ fi
 
 stty ixany
 stty ixoff -ixon
-eval "$(direnv hook bash)"
