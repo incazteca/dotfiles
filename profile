@@ -40,3 +40,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
+
+eval "$(docker-machine env strike-dock)"
+alias mm_env='eval "$(docker-machine env strike-dock)"'
