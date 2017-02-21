@@ -141,7 +141,7 @@ cabbrev mouseon set mouse=a<CR>
 
 " Status line settings
 set laststatus=2 "Always have a status line
-set statusline=%-3.3n\ %f%(\ %r%)%(\ %%m%0*%)%=(%l,\ %c)\ %P\ [%{&encoding}%{&fileformat}]%(\ %w%)\ %y
+set statusline=%-3.3n\ %f%(\ %r%)%(\ %%m%0*%)%=%{ALEGetStatusLine()}\ (%l,\ %c)\ %P\ [%{&encoding}%{&fileformat}]%(\ %w%)\ %y
 set shortmess+=aI "Use nice short status notices
 
 hi StatusLine term=inverse cterm=NONE ctermfg=white ctermbg=black
@@ -301,6 +301,11 @@ nnoremap <Leader>gl :Glog<Enter>
 nnoremap <Leader>gs :Gstatus<Enter>
 " }}}
 
+" {{{ ale
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" }}}
 
 set nocompatible
 
