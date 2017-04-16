@@ -102,6 +102,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Have additional file for sensitive environment variables
+
+if [ -f ~/.bash_envs ]; then
+    . ~/.bash_envs
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -118,3 +124,6 @@ stty ixoff -ixon
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
+
+export GOPATH="$HOME/development_zone"
+[ -d "$GOPATH/bin" ] && export PATH="$GOPATH/bin:$PATH"
