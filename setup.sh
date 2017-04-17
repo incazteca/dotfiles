@@ -12,7 +12,9 @@ function setup_vim_plugins {
 
     current_path=$(pwd)
     vim_plugins=(
-        'scrooloose/syntastic'
+        'w0rp/ale'
+        'fatih/vim-go'
+        'Yggdroot/indentLine'
         'scrooloose/nerdtree'
         'tpope/vim-endwise'
         'tpope/vim-fugitive'
