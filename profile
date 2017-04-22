@@ -40,3 +40,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
+
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/bin
