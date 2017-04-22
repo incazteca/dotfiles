@@ -26,6 +26,17 @@ if [ $TERM = "xterm" ] ; then
     TERM="xterm-256color"
 fi
 
+# set PATH to include GO binary
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
+
+# set PATH to use pip modules
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+
 set -o vi
 
 if [[ $(uname) == 'Darwin' ]]; then
@@ -40,6 +51,3 @@ if [[ $(uname) == 'Darwin' ]]; then
 fi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
-
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/.local/bin
