@@ -121,6 +121,3 @@ fi
 
 stty ixany
 stty ixoff -ixon
-
-export GOPATH="$HOME/development_zone"
-[ -d "$GOPATH/bin" ] && export PATH="$GOPATH/bin:$PATH"
