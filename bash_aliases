@@ -20,9 +20,11 @@ vim_modified() {
     fi
 }
 
+alias vi='vim'
 alias be='bundle exec'
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmux-session=tmux_switcher
 alias besty='bundle exec spring'
 alias db-disconnect=db_disconnect
 alias vim-modified=vim_modified
+alias py-clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
