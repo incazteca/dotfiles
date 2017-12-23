@@ -14,10 +14,27 @@ db_disconnect() {
 
 vim_modified() {
     if [[ $(uname) == 'Darwin' ]]; then
-        git status --short | awk '{print $2}' | xargs -o vim
+        git status --short | awk '{if ($1 == "M"){print $2}}' | xargs -o vim
     else
-        git status --short | awk '{print $2}' | xargs bash -c '</dev/tty vim "$@"' i
+        git status --short | awk '{if ($1 == "M"){print $2}}' | xargs bash -c '</dev/tty vim "$@"' i
     fi
+}
+
+git_rebase_helper() {
+  file_name=$1
+
+  if [$file_name == '']; then
+    git log --format=format:%H --name-only origin/master.. |
+    awk '/^[a-z,0-9]{40}$/{prev=$0; getline; print $1 "--" substr(prev, 0, 7)}' |
+    sort
+  else
+    git log --format=format:%H --name-only origin/master.. |
+    awk '/^[a-z,0-9]{40}$/{prev=$0; getline; print $1 "--" substr(prev, 0, 7)}' |
+    sort |
+    grep $file_name |
+    awk '{commit=substr($0,length($0) - 6); output=output"|"commit ; print output}' |
+    tail -n 1
+  fi
 }
 
 alias vi='vim'
@@ -27,4 +44,5 @@ alias tmux-session=tmux_switcher
 alias besty='bundle exec spring'
 alias db-disconnect=db_disconnect
 alias vim-modified=vim_modified
+alias git_rebase_helper=git_rebase_helper
 alias py-clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
