@@ -171,9 +171,6 @@ autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set tw=72
 " }}}
 
-" Automatically run ctags when writing our files
-au BufWritePost *.php,*.java silent! !ctags -R 2>/dev/null &
-
 " }}}
 
 "{{{ Mappings
@@ -307,27 +304,8 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " }}}
 
-set nocompatible
-
-" ToggleList function {{{
-let g:toggle_list = 1
-function! ToggleList()
-	if exists("g:toggle_list")
-		if !exists("b:toggle_list_state")
-			let b:toggle_list_state = &list ? 1 : 0
-		endif
-		let b:toggle_list_state = (b:toggle_list_state + 1) % 3
-		if b:toggle_list_state == 0
-			set nolist
-		elseif b:toggle_list_state == 1
-			set listchars=tab:»\ ,trail:·,nbsp:·
-			set list
-		elseif b:toggle_list_state == 2
-			set listchars=tab:»\ ,trail:·,eol:¶,nbsp:·
-			set list
-		endif
-	else
-		set list!
-	endif
-endfunction
+" {{{ IndentLine
+" Don't have Indent Line mess with conceal cursor settings
+let g:indentLine_setConceal = 0
+let g:indentLine_noConcealCursor=""
 " }}}
