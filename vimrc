@@ -1,7 +1,7 @@
 set nocompatible
 
 " Load plugins from ~/.vim/bundle and process doc
-filetype off
+filetype plugin indent on
 execute pathogen#infect()
 
 " Set term settings to xterm-256
