@@ -37,6 +37,11 @@ git_rebase_helper() {
   fi
 }
 
+git_history_search() {
+  expression=$1
+  git rev-list --all | xargs git grep "$expression"
+}
+
 alias vi='vim'
 alias be='bundle exec'
 alias tmux="TERM=screen-256color-bce tmux"
@@ -45,4 +50,5 @@ alias besty='bundle exec spring'
 alias db-disconnect=db_disconnect
 alias vim-modified=vim_modified
 alias git_rebase_helper=git_rebase_helper
+alias git_history_search=git_history_search
 alias py-clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
