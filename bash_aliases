@@ -14,9 +14,9 @@ db_disconnect() {
 
 vim_modified() {
     if [[ $(uname) == 'Darwin' ]]; then
-        git status --short | awk '{if ($1 == "M"){print $2}}' | xargs -o vim
+        git status --short | awk '{if ($1 == "M" || $1 == "UU"){print $2}}' | xargs -o vim
     else
-        git status --short | awk '{if ($1 == "M"){print $2}}' | xargs bash -c '</dev/tty vim "$@"' i
+        git status --short | awk '{if ($1 == "M" || $1 == "UU"){print $2}}' | xargs bash -c '</dev/tty vim "$@"' i
     fi
 }
 
