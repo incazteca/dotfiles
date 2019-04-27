@@ -15,10 +15,10 @@ function setup_vim_plugins {
         'w0rp/ale'
         'fatih/vim-go'
         'Yggdroot/indentLine'
-        'scrooloose/nerdtree'
         'tpope/vim-endwise'
         'tpope/vim-fugitive'
         'tpope/vim-haml'
+        'tpope/vim-rails'
     )
 
     for plugin in ${vim_plugins[@]}; do
