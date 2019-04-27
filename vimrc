@@ -278,16 +278,16 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 " Plugin settings {{{
 
 " {{{ NERDTree
-map <F5> :NERDTreeToggle<CR>
-map <F12> :NERDTreeToggle<CR>
+"map <F5> :NERDTreeToggle<CR>
+"map <F12> :NERDTreeToggle<CR>
 " Set the location of our NERDTree bookmarks file
-let g:NERDTreeBookmarksFile=expand('$HOME') . '/.vim/NERDTreeBookmarks'
+"let g:NERDTreeBookmarksFile=expand('$HOME') . '/.vim/NERDTreeBookmarks'
 
 " Open NERDTree if no arguments are specified
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 
 " Close vim if the only buffer left is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " }}}
 
