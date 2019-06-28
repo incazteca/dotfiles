@@ -218,7 +218,9 @@ nmap <leader>s :source $MYVIMRC<CR>
 nmap <leader>e :e $MYVIMRC<CR>
 
 " Quickly delete a buffer
-nmap <leader>d :bd<CR>
+nmap <leader>d :b#<bar>bd#<CR>
+
+
 
 " Quickly toggle spellcheck
 nmap <leader>l :set spell!<CR>
