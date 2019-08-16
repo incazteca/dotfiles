@@ -313,9 +313,10 @@ function! LinterStatus() abort
 
     return l:counts.total == 0 ? ok_msg : printf(count_msg, all_errors, all_non_errors)
 endfunction
+" }}}
 
-
-
+" {{{ fzf
+set rtp+=~/.fzf
 " }}}
 
 " {{{ IndentLine

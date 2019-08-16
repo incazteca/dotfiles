@@ -24,11 +24,11 @@ git_rebase_helper() {
   file_name=$1
 
   if [$file_name == '']; then
-    git log --format=format:%H --name-only origin/master.. |
+    git log --format=format:%H --name-only origin/staging.. |
     awk '/^[a-z,0-9]{40}$/{prev=$0; getline; print $1 "--" substr(prev, 0, 7)}' |
     sort
   else
-    git log --format=format:%H --name-only origin/master.. |
+    git log --format=format:%H --name-only origin/staging.. |
     awk '/^[a-z,0-9]{40}$/{prev=$0; getline; print $1 "--" substr(prev, 0, 7)}' |
     sort |
     grep $file_name |
