@@ -315,9 +315,6 @@ function! LinterStatus() abort
 
     return l:counts.total == 0 ? ok_msg : printf(count_msg, all_errors, all_non_errors)
 endfunction
-
-
-
 " }}}
 
 " {{{ IndentLine
@@ -325,3 +322,8 @@ endfunction
 " let g:indentLine_setConceal = 0
 " let g:indentLine_noConcealCursor=""
 " }}}
+
+" {{{ fzf
+set rtp+=/usr/local/opt/fzf
+" }}}
+
