@@ -1,9 +1,5 @@
 set nocompatible
 
-" Load plugins from ~/.vim/bundle and process doc
-filetype plugin indent on
-execute pathogen#infect()
-
 " Set term settings to xterm-256
 if &term == "xterm"
     set term=xterm-256color
@@ -171,6 +167,10 @@ autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set tw=72
 " }}}
 
+" Disable coc for certain files, refer below for file blacklist
+autocmd BufNew,BufEnter *.js,*.svelte,*.ts execute "silent! CocEnable"
+autocmd BufLeave *.js,*.svelte,*.ts execute "silent! CocDisable"
+
 " }}}
 
 "{{{ Mappings
@@ -279,19 +279,26 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 
 " Plugin settings {{{
 
-" {{{ NERDTree
-"map <F5> :NERDTreeToggle<CR>
-"map <F12> :NERDTreeToggle<CR>
-" Set the location of our NERDTree bookmarks file
-"let g:NERDTreeBookmarksFile=expand('$HOME') . '/.vim/NERDTreeBookmarks'
+" Specify directory for plugins
+let g:ale_disable_lsp = 1
 
-" Open NERDTree if no arguments are specified
-"autocmd vimenter * if !argc() | NERDTree | endif
+call plug#begin('~/.vim/plugged')
 
-" Close vim if the only buffer left is NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+Plug 'Yggdroot/indentLine'
+Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'leafOfTree/vim-svelte-plugin'
+Plug 'leafgarland/typescript-vim', { 'do': '~/.vim/bundle/typescript-vim' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['typescript', 'javascript', 'svelte'] }
+Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-rails'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-" }}}
+" Initialize plugin system
+call plug#end()
 
 " {{{ fugitive
 nnoremap <Leader>gb :Gblame<Enter>
@@ -322,8 +329,3 @@ endfunction
 " let g:indentLine_setConceal = 0
 " let g:indentLine_noConcealCursor=""
 " }}}
-
-" {{{ fzf
-set rtp+=/usr/local/opt/fzf
-" }}}
-
