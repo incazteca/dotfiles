@@ -7,6 +7,14 @@ function install_pathogen {
     curl -LSso $current_path/vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 }
 
+function install_vim_plug {
+    echo "Installing Vim Plug"
+
+    current_path=$(pwd)
+		curl -fLo $current_path/vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
+
 function setup_vim_plugins {
     echo "Installing Vim Plugins"
 
@@ -85,8 +93,6 @@ function setup_dot_directories {
 
 # Begin Main
 
-install_pathogen
-setup_vim_plugins
-
+install_vim_plug
 setup_dotfiles
 setup_dot_directories
