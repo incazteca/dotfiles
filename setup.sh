@@ -19,6 +19,7 @@ function setup_vim_plugins {
         'tpope/vim-fugitive'
         'tpope/vim-haml'
         'tpope/vim-rails'
+	'leafgarland/typescript-vim'
     )
 
     for plugin in ${vim_plugins[@]}; do

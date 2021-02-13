@@ -52,3 +52,4 @@ alias vim-modified=vim_modified
 alias git_rebase_helper=git_rebase_helper
 alias git_history_search=git_history_search
 alias py-clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
+alias notes='vi ~/.NOTES'
