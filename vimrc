@@ -141,7 +141,7 @@ cabbrev mouseon set mouse=a<CR>
 
 " Status line settings
 set laststatus=2 "Always have a status line
-set statusline=%-3.3n\ %f%(\ %r%)%(\ %%m%0*%)%=%{ALEGetStatusLine()}\ (%l,\ %c)\ %P\ [%{&encoding}%{&fileformat}]%(\ %w%)\ %y
+set statusline=%-3.3n\ %f%(\ %r%)%(\ %%m%0*%)%=%{LinterStatus()}\ (%l,\ %c)\ %P\ [%{&encoding}%{&fileformat}]%(\ %w%)\ %y
 set shortmess+=aI "Use nice short status notices
 
 hi StatusLine term=inverse cterm=NONE ctermfg=white ctermbg=black
@@ -218,7 +218,9 @@ nmap <leader>s :source $MYVIMRC<CR>
 nmap <leader>e :e $MYVIMRC<CR>
 
 " Quickly delete a buffer
-nmap <leader>d :bd<CR>
+nmap <leader>d :b#<bar>bd#<CR>
+
+
 
 " Quickly toggle spellcheck
 nmap <leader>l :set spell!<CR>
@@ -278,16 +280,16 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 " Plugin settings {{{
 
 " {{{ NERDTree
-map <F5> :NERDTreeToggle<CR>
-map <F12> :NERDTreeToggle<CR>
+"map <F5> :NERDTreeToggle<CR>
+"map <F12> :NERDTreeToggle<CR>
 " Set the location of our NERDTree bookmarks file
-let g:NERDTreeBookmarksFile=expand('$HOME') . '/.vim/NERDTreeBookmarks'
+"let g:NERDTreeBookmarksFile=expand('$HOME') . '/.vim/NERDTreeBookmarks'
 
 " Open NERDTree if no arguments are specified
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 
 " Close vim if the only buffer left is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " }}}
 
@@ -301,11 +303,25 @@ nnoremap <Leader>gs :Gstatus<Enter>
 " {{{ ale
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:ok_msg = '⬥ ok'
+    let l:count_msg = '⨉ %d, ⚠ %d'
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? ok_msg : printf(count_msg, all_errors, all_non_errors)
+endfunction
+
+
+
 " }}}
 
 " {{{ IndentLine
 " Don't have Indent Line mess with conceal cursor settings
-let g:indentLine_setConceal = 0
-let g:indentLine_noConcealCursor=""
+" let g:indentLine_setConceal = 0
+" let g:indentLine_noConcealCursor=""
 " }}}

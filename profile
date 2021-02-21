@@ -31,9 +31,14 @@ if [ $TERM = "xterm" ] ; then
     TERM="xterm-256color"
 fi
 
-# set PATH to include GO binary
+# Set PATH to include GO binary
 if [ -d "/usr/local/go/bin" ] ; then
     PATH="/usr/local/go/bin:$PATH"
+fi
+
+# SET PATH to include GOPATH
+if [ -d "$HOME/go/bin" ] ; then
+    PATH="$HOME/go/bin:$PATH"
 fi
 
 # set PATH to use pip modules
@@ -41,10 +46,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-set -o vi
-
+# SET CLI colors since OSX is lame and is just one color
 if [[ $(uname) == 'Darwin' ]]; then
-	# SET CLI colors since OSX is lame and is just one color
 	export CLICOLOR=1
 
 	if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -53,5 +56,7 @@ if [[ $(uname) == 'Darwin' ]]; then
 
 	source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 fi
+
+set -o vi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
