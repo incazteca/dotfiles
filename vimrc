@@ -296,9 +296,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'thoughtbot/vim-rspec'
 
 " Initialize plugin system
 call plug#end()
+
+" {{{ vim-svelte-plugin
+let g:vim_svelte_plugin_use_typescript = 1
+" }}}
 
 " {{{ fugitive
 nnoremap <Leader>gb :Gblame<Enter>
@@ -310,6 +315,8 @@ nnoremap <Leader>gs :Gstatus<Enter>
 " {{{ ale
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_standardrb_executable = 'bundle'
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
