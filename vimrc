@@ -318,6 +318,12 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_ruby_standardrb_executable = 'bundle'
 
+let g:ale_fixers = {
+\   'svelte': ['prettier'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
