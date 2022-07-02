@@ -106,6 +106,26 @@ if [ -d "$HOME/bin" ]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
+# Set PATH to include GO binary
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
+
+# SET PATH to include GOPATH
+if [ -d "$HOME/go/bin" ] ; then
+    PATH="$HOME/go/bin:$PATH"
+fi
+
+# set PATH to use pip modules and Stack
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+eval "$(direnv hook zsh)"
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
