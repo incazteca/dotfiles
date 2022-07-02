@@ -151,6 +151,7 @@ hi StatusLineNC term=none cterm=NONE ctermfg=darkgray ctermbg=black
        \         exe "normal g'\"" |
        \     endif |
        \ endif
+" }}}
 
 " {{{ Git settings
 " Go to the top of git commit files, do not remember where we left off
@@ -162,12 +163,6 @@ autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
 
 " Wrap commit messages at 72 chars
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set tw=72
-" }}}
-
-" Disable coc for certain files, refer below for file blacklist
-autocmd BufNew,BufEnter *.js,*.svelte,*.ts execute "silent! CocEnable"
-autocmd BufLeave *.js,*.svelte,*.ts execute "silent! CocDisable"
-
 " }}}
 
 "{{{ Mappings
@@ -275,8 +270,6 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 " Plugin settings {{{
 
 " Specify directory for plugins
-let g:ale_disable_lsp = 1
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'Yggdroot/indentLine'
@@ -284,7 +277,6 @@ Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'leafgarland/typescript-vim', { 'do': '~/.vim/bundle/typescript-vim' }
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['typescript', 'javascript', 'svelte'] }
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
