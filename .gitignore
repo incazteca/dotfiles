@@ -3,4 +3,6 @@
 
 vim/autoload
 vim/bundle
+vim/.netrwhist
+vim/plugged/*
 backups/*
