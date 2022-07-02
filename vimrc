@@ -17,7 +17,7 @@ syntax on
 " Set colorscheme to our custom color
 colorscheme desert256m
 
-" Save up to 100 commands executed
+" Save up to 200 commands executed
 set history=200
 
 " enable filetype detection:
@@ -70,9 +70,6 @@ set ruler
 
 " Scroll offset of 3
 set scrolloff=3
-
-" Do not wrap text lines
-set nowrap
 
 " Turn on line numbers
 "set nu
@@ -219,8 +216,6 @@ nmap <leader>e :e $MYVIMRC<CR>
 
 " Quickly delete a buffer
 nmap <leader>d :b#<bar>bd#<CR>
-
-
 
 " Quickly toggle spellcheck
 nmap <leader>l :set spell!<CR>
