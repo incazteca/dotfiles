@@ -60,3 +60,4 @@ fi
 set -o vi
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1)$ '
+. "$HOME/.cargo/env"
