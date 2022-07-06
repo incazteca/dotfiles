@@ -122,7 +122,9 @@ set pastetoggle=<F10>
 
 set mouse=a
 "set mousemodel=popup
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 
 " set up command mode abbreviations for mouseoff and mouseon
 cabbrev mouseoff set mouse=<CR>
@@ -300,10 +302,13 @@ nnoremap <Leader>gs :Gstatus<Enter>
 " }}}
 
 " {{{ ale
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_set_balloons = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_ruby_standardrb_executable = 'bundle'
+
+let g:ale_linters = {
+  \ 'go': ['gopls'],
+ \}
 
 let g:ale_fixers = {
 \   'svelte': ['prettier'],
