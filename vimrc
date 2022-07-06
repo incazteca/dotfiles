@@ -232,6 +232,10 @@ nnoremap zl 20zl
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
 
+" Use Tab and Shift Tab to go through autocomplete options
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
 " }}}
 
 "{{{ Backup settings
@@ -256,7 +260,7 @@ endif
 set diffopt+=iwhite
 
 " Test out omnicompletion
-set ofu=syntaxcomplete#Complete
+"set ofu=ale#completion#OminFunc
 
 " Search the current file for what's currently in the search register and display matches
 nmap <silent> ,gs :vimgrep /<C-r>// %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
@@ -273,6 +277,8 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 
 " Specify directory for plugins
 call plug#begin('~/.vim/plugged')
+
+let g:ale_completion_enabled = 1
 
 Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
