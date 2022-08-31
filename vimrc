@@ -311,6 +311,7 @@ nnoremap <Leader>gs :Gstatus<Enter>
 let g:ale_set_balloons = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_ruby_standardrb_executable = 'bundle'
+let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
   \ 'go': ['gopls'],
