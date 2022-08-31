@@ -62,5 +62,5 @@ alias git_rebase_helper=git_rebase_helper
 alias git_history_search=git_history_search
 alias py-clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
 alias notes='vi ~/.NOTES'
-alias chrome_reset='ps -ef | grep Chrome | awk "{print $2}" | xargs kill'
-alias killspring='ps -ef | grep [s]pring | awk "{print $2}" | xargs kill'
+alias chrome_reset='ps -ef | grep '"'"'[C]hrome'"'"' | awk {'"'"'print $2'"'"'} | xargs kill'
+alias killspring='ps -ef | grep "[s]pring" | awk {"print $2"} | xargs kill'

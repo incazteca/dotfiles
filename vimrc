@@ -17,7 +17,7 @@ syntax on
 " Set colorscheme to our custom color
 colorscheme desert256m
 
-" Save up to 100 commands executed
+" Save up to 200 commands executed
 set history=200
 
 " enable filetype detection:
@@ -71,9 +71,6 @@ set ruler
 " Scroll offset of 3
 set scrolloff=3
 
-" Do not wrap text lines
-set nowrap
-
 " Turn on line numbers
 "set nu
 
@@ -125,7 +122,9 @@ set pastetoggle=<F10>
 
 set mouse=a
 "set mousemodel=popup
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 
 " set up command mode abbreviations for mouseoff and mouseon
 cabbrev mouseoff set mouse=<CR>
@@ -154,6 +153,7 @@ hi StatusLineNC term=none cterm=NONE ctermfg=darkgray ctermbg=black
        \         exe "normal g'\"" |
        \     endif |
        \ endif
+" }}}
 
 " {{{ Git settings
 " Go to the top of git commit files, do not remember where we left off
@@ -165,12 +165,6 @@ autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set spell
 
 " Wrap commit messages at 72 chars
 autocmd BufNewFile,BufReadPost COMMIT_EDITMSG set tw=72
-" }}}
-
-" Disable coc for certain files, refer below for file blacklist
-autocmd BufNew,BufEnter *.js,*.svelte,*.ts execute "silent! CocEnable"
-autocmd BufLeave *.js,*.svelte,*.ts execute "silent! CocDisable"
-
 " }}}
 
 "{{{ Mappings
@@ -220,8 +214,6 @@ nmap <leader>e :e $MYVIMRC<CR>
 " Quickly delete a buffer
 nmap <leader>d :b#<bar>bd#<CR>
 
-
-
 " Quickly toggle spellcheck
 nmap <leader>l :set spell!<CR>
 
@@ -239,6 +231,10 @@ nnoremap zl 20zl
 
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
+
+" Use Tab and Shift Tab to go through autocomplete options
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " }}}
 
@@ -264,7 +260,7 @@ endif
 set diffopt+=iwhite
 
 " Test out omnicompletion
-set ofu=syntaxcomplete#Complete
+"set ofu=ale#completion#OminFunc
 
 " Search the current file for what's currently in the search register and display matches
 nmap <silent> ,gs :vimgrep /<C-r>// %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
@@ -280,25 +276,29 @@ nmap <silent> ,gW :vimgrep /<C-r><C-a>/ %<CR>:ccl<CR>:cwin<CR><C-W>J:nohls<CR>
 " Plugin settings {{{
 
 " Specify directory for plugins
-let g:ale_disable_lsp = 1
-
 call plug#begin('~/.vim/plugged')
+
+let g:ale_completion_enabled = 1
 
 Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'leafgarland/typescript-vim', { 'do': '~/.vim/bundle/typescript-vim' }
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['typescript', 'javascript', 'svelte'] }
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'thoughtbot/vim-rspec'
 
 " Initialize plugin system
 call plug#end()
+
+" {{{ vim-svelte-plugin
+let g:vim_svelte_plugin_use_typescript = 1
+" }}}
 
 " {{{ fugitive
 nnoremap <Leader>gb :Gblame<Enter>
@@ -308,8 +308,20 @@ nnoremap <Leader>gs :Gstatus<Enter>
 " }}}
 
 " {{{ ale
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_set_balloons = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_standardrb_executable = 'bundle'
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {
+  \ 'go': ['gopls'],
+ \}
+
+let g:ale_fixers = {
+\   'svelte': ['prettier'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
