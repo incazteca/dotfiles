@@ -129,7 +129,11 @@ if [ -d "$HOME/.krew/bin" ] ; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
-eval "$(direnv hook zsh)"
+
+if [ -f "/usr/bin/direnv" ] ; then
+    eval "$(direnv hook zsh)"
+fi
+
 if [ -d "/usr/share/doc/fzf" ] ; then
     source /usr/share/doc/fzf/examples/key-bindings.zsh
     source /usr/share/doc/fzf/examples/completion.zsh
