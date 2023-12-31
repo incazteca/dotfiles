@@ -11,8 +11,9 @@
   graph  = log --graph --decorate --all
   short-graph = log --graph --decorate -all --oneline
   pr     = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
+  
 [core]
-  editor = /usr/bin/vim
+  editor = /opt/homebrew/bin/vim
 	excludesfile = /home/freyes/.gitignore_global
 [rerere]
   enabled = true

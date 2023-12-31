@@ -17,6 +17,9 @@ syntax on
 " Set colorscheme to our custom color
 colorscheme desert256m
 
+" Disable JSON concealment
+let g:vim_json_conceal = 0
+
 " Save up to 200 commands executed
 set history=200
 
@@ -290,8 +293,10 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-liquid'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'thoughtbot/vim-rspec'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Initialize plugin system
 call plug#end()
@@ -336,8 +341,3 @@ function! LinterStatus() abort
 endfunction
 " }}}
 
-" {{{ IndentLine
-" Don't have Indent Line mess with conceal cursor settings
-" let g:indentLine_setConceal = 0
-" let g:indentLine_noConcealCursor=""
-" }}}
