@@ -129,8 +129,7 @@ if [ -d "$HOME/.krew/bin" ] ; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
-
-if [ -f "/usr/bin/direnv" ] ; then
+if [[ ($(uname) == 'Darwin' && -f "/opt/homebrew/bin/direnv") || -f "/usr/bin/direnv" ]]; then
     eval "$(direnv hook zsh)"
 fi
 
