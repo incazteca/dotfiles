@@ -129,6 +129,11 @@ if [ -d "$HOME/.krew/bin" ] ; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
+# set PATH for Cargo
+if [ -d "$HOME/.cargo/bin" ] ; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 if [[ ($(uname) == 'Darwin' && -f "/opt/homebrew/bin/direnv") || -f "/usr/bin/direnv" ]]; then
     eval "$(direnv hook zsh)"
 fi
@@ -170,6 +175,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+eval "$(rv shell init zsh)"
+eval "$(rv shell completions zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
