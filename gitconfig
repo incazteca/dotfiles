@@ -13,7 +13,7 @@
   pr     = "!f() { git fetch origin pull/$1/head:pr-$1 && git checkout pr-$1; }; f"
   
 [core]
-  editor = /opt/homebrew/bin/vim
+  editor = /usr/bin/vim
 	excludesfile = /home/freyes/.gitignore_global
 [rerere]
   enabled = true

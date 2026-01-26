@@ -46,6 +46,11 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set PATH if duckDB is installed
+if [ -d "$HOME/.duckdb/cli/latest" ] ; then
+    PATH="$HOME/.duckdb/cli/latest:$PATH"
+fi
+
 # SET CLI colors since OSX is lame and is just one color
 if [[ $(uname) == 'Darwin' ]]; then
 	export CLICOLOR=1
